@@ -56,17 +56,17 @@
 
  ![image_1778014964960.png](./image_1778014964960.png "image_1778014964960.png")
 
- ###Stage 2 - Scale to all teams
+ ### Stage 2 - Scale to all teams
 
  Scrape all the teams from the league, expanding all the layers and enable cross-team comparisons
 
- ###Stage 3 - Compare metrics with others top leagues
+ ### Stage 3 - Compare metrics with others top leagues
 
  To understand the true level of the league and conclude percentiles and stablish local standards according to this level
 
- ###Stage 4 - Play by play
+ ### Stage 4 - Play by play
  Scrape play by play data from each game and calculate the exact possesions instead of estimated
 
- ###Stage 5 - Dashboards
+ ### Stage 5 - Dashboards
 
  Use visual analysis filtered by teams, players, game or season
