@@ -17,42 +17,42 @@
  Python + Playwright - for web scrapping
 
  ### Data Storage
- Parquet /n
- Delta Lake
+ Parquet  
+ Delta Lake  
 
  ### Data Processing
- Spark SQL /n
- Databricks
+ Spark SQL  
+ Databricks  
 
- Architecture
- Medallion Architecture
- Star Schema
+ ### Architecture  
+ Medallion Architecture   
+ Star Schema  
 
  ### Stage 1 - MVP - Finished ### 
 
- About the MVP - 
+ About the MVP  
 
  We scraped using Playwright from the web from laliganacional.com.ar and stored it as parquet format in Databricks.
 
- From that point, I started to build the architecture with 3 layers, bronze, silver and gold, the standard Medallion Architecture.
+ From that point, I started to build the architecture with 3 layers, bronze, silver and gold, the standard Medallion Architecture.  
 
- Bronze - raw data
- Silver - cleaned and transformed data
- Gold - advanced metrics ready to analysis
+ Bronze - raw data  
+ Silver - cleaned and transformed data  
+ Gold - advanced metrics ready to analysis  
 
  Every step was considering the quality data, that's why it was very important the EDA for every parquet to go further in the analysis before moving to the next the layers.
 
- We finished the layers 
+ We finished the layers   
 
  ![image_1777994827794.png](./image_1777994827794.png "image_1777994827794.png")
 
 
- And the star schema
+ And the star schema  
 
  ![image_1777995829084.png](./image_1777995829084.png "image_1777995829084.png")
 
 
- Even this, we have the possibility to make some quick insights with this MVP
+ Even this, we have the possibility to make some quick insights with this MVP  
 
  ![image_1778014964960.png](./image_1778014964960.png "image_1778014964960.png")
 
