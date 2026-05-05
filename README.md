@@ -17,11 +17,11 @@
  Python + Playwright - for web scrapping
 
  ### Data Storage
- Parquet
+ Parquet /n
  Delta Lake
 
  ### Data Processing
- Spark SQL
+ Spark SQL /n
  Databricks
 
  Architecture
