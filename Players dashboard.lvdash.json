@@ -2,7 +2,7 @@
   "datasets": [
     {
       "name": "70b08cda",
-      "displayName": "Untitled dataset",
+      "displayName": "Player Performance Summary Statistics Dataset",
       "queryLines": [
         "SELECT\n",
         "    fs.IdJugador,\n",
@@ -36,12 +36,39 @@
         "GROUP BY fs.IdJugador, dj.Apellido, dj.Nombre\n",
         "ORDER BY puntos_totales DESC"
       ]
+    },
+    {
+      "name": "773840a5",
+      "displayName": "Laliga Player Shooting And Usage Efficiency Stats",
+      "queryLines": [
+        "WITH player_metrics AS (\n",
+        "    SELECT \n",
+        "        CONCAT(Apellido, ', ', Nombre) AS Jugador,\n",
+        "        COUNT(CASE WHEN TiempoJuego > 0 THEN 1 END) as partidos_jugados,\n",
+        "        (SUM(Puntos) / NULLIF(2 * (SUM(tiros_2_totales) + SUM(tiros_3_totales) + 0.44 * SUM(tiros_libres_totales)), 0)) * 100 AS ts,\n",
+        "        ((SUM(tiros_2_aciertos) + 1.5 * SUM(tiros_3_aciertos)) / NULLIF(SUM(tiros_2_totales) + SUM(tiros_3_totales), 0)) * 100 AS efg,\n",
+        "        AVG(uso_pctg) AS uso_pctg\n",
+        "    FROM laliga.gold.fact_stats fs\n",
+        "    JOIN laliga.gold.dim_jugadores dj\n",
+        "    ON fs.IdJugador = dj.IdJugador\n",
+        "    WHERE fs.IdEquipo = '89192'\n",
+        "    GROUP BY fs.IdJugador, jugador\n",
+        ")\n",
+        "SELECT\n",
+        "    Jugador,\n",
+        "    partidos_jugados,\n",
+        "    ROUND(ts, 2) AS TS,\n",
+        "    ROUND(efg, 2) AS eFG,\n",
+        "    ROUND(uso_pctg, 2) AS USO\n",
+        "FROM player_metrics \n",
+        "ORDER BY partidos_jugados DESC"
+      ]
     }
   ],
   "pages": [
     {
       "name": "e1431879",
-      "displayName": "Untitled Page",
+      "displayName": "Metricas",
       "layout": [
         {
           "widget": {
@@ -138,10 +165,130 @@
             }
           },
           "position": {
+            "x": 7,
+            "y": 4,
+            "width": 5,
+            "height": 7
+          }
+        },
+        {
+          "widget": {
+            "name": "84f33f40",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "70b08cda",
+                  "fields": [
+                    {
+                      "name": "sum(puntos_totales)",
+                      "expression": "SUM(`puntos_totales`)"
+                    },
+                    {
+                      "name": "Apellido",
+                      "expression": "`Apellido`"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "showTitle": true,
+                "showDescription": false,
+                "title": "% de Puntos por Jugador"
+              },
+              "widgetType": "pie",
+              "encodings": {
+                "angle": {
+                  "fieldName": "sum(puntos_totales)",
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "displayName": "Puntos"
+                },
+                "color": {
+                  "fieldName": "Apellido",
+                  "displayName": "Jugador",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "label": {
+                  "show": true
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 4,
+            "width": 7,
+            "height": 7
+          }
+        },
+        {
+          "widget": {
+            "name": "uso",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "773840a5",
+                  "fields": [
+                    {
+                      "name": "USO",
+                      "expression": "`USO`"
+                    },
+                    {
+                      "name": "eFG",
+                      "expression": "`eFG`"
+                    },
+                    {
+                      "name": "TS",
+                      "expression": "`TS`"
+                    },
+                    {
+                      "name": "Jugador",
+                      "expression": "`Jugador`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "title": "Metricas avanzadas",
+                "showTitle": true
+              },
+              "widgetType": "table",
+              "encodings": {
+                "columns": [
+                  {
+                    "fieldName": "USO"
+                  },
+                  {
+                    "fieldName": "eFG"
+                  },
+                  {
+                    "fieldName": "TS"
+                  },
+                  {
+                    "fieldName": "Jugador"
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
             "x": 0,
             "y": 0,
             "width": 12,
-            "height": 11
+            "height": 4
           }
         }
       ],
