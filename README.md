@@ -3,7 +3,7 @@
 
  Project focused on the professional basketball league from Argentina,
 
- We can find a lot of data for NBA basketball league around the web, even for European League with all the data and advanced metrics, I would like to introduce this for LNB, the Argentinian basketball league.
+ We can find a lot of data for NBA basketball league and European League around the web, all the data and advanced metrics, I would like to do this for LNB, the Argentinian basketball league.
 
  Why this project? We cannot find any public advanced data such as USO, TS, eFG, etc, do the teams have a way to access or build this data? We don't know, but is a key point to understand what is the level from the league at these days.
 
