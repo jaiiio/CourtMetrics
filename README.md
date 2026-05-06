@@ -39,6 +39,8 @@ Build a modern **Lakehouse** platform to generate advanced basketball analytics 
 
   ![image_1778014964960.png](./image_1778014964960.png "image_1778014964960.png")  
 
+<img width="983" height="786" alt="image" src="https://github.com/user-attachments/assets/35793e72-caa8-48e3-ae9a-d922c263e6e3" />
+
 
   ### 🚀 How to Run the Project (Local / Databricks)
 
